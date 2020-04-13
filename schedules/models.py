@@ -19,15 +19,3 @@ class Schedule(models.Model):
     def __str__(self):
         sched = "%s - %s"%(str(self.start_time),str(self.end_time))
         return "%s %s (%s)"%(self.section,self.schedule_name, sched)
-class StudentSchedule(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
-    schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE, blank=True, null=True)
-    advice = models.BooleanField(default=False)
-    remarks = models.TextField(blank=True, null=True)
-    timestamp = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-    def __str__(self):
-        if self.schedule:
-            return self.schedule
-        else:
-            return self.user

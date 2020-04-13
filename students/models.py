@@ -2,7 +2,7 @@ import datetime
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import date
-from schedules.models import Schedule, StudentSchedule
+from schedules.models import Schedule
 # Create your models here.
 def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
@@ -20,7 +20,9 @@ class StudentName(models.Model):
     gender = models.CharField(max_length=6, choices=GENDER, blank=True, null=True)
     birth_date = models.DateField()
     school_status = models.BooleanField(default=True, verbose_name='schooling status')
-    schedule = models.ForeignKey(StudentSchedule, on_delete=models.CASCADE, blank=True, null=True)
+    schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE, blank=True, null=True)
+    advice = models.BooleanField(default=False)
+    remarks = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to=user_directory_path, blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

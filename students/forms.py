@@ -25,11 +25,11 @@ class StudentEditForm(forms.ModelForm):
             "image",
             "school_status",
         )
-# class StudentScheduleForm(forms.ModelForm):
-#     class Meta:
-#         model = StudentName
-#         fields = (
-#             "schedule",
-#             "advice",
-#             "remarks",
-#         )
+class StudentScheduleForm(forms.ModelForm):
+    class Meta:
+        model = StudentName
+        fields = (
+            "schedule",
+            "advice",
+            "remarks",
+        )

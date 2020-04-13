@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from .models import StudentName
-from .forms import StudentAddForm, StudentEditForm
+from .forms import StudentAddForm, StudentEditForm, StudentScheduleForm
 # Create your views here.
 def my_list(request):
     student_list = StudentName.objects.all()
@@ -64,16 +64,16 @@ def delete_student(request, pk):
     instance = get_object_or_404(StudentName, pk=pk)
     instance.delete()
     return redirect("student:list")
-# def schedule_student(request, pk):
-# 	instance=get_object_or_404(StudentName, pk=pk)
-# 	form = StudentScheduleForm(request.POST or None, request.FILES or None, instance=instance)
-# 	if form.is_valid():
-# 		instance=form.save(commit=False)
-# 		instance.save()
-# 		return redirect('student:list')
-# 	context = {
-# 		"form": form,
-# 		"title": "schedule student",
-# 		"instance": instance,
-# 	}
-# 	return render(request, "students/student_schedule.html", context)
+def schedule_student(request, pk):
+	instance=get_object_or_404(StudentName, pk=pk)
+	form = StudentScheduleForm(request.POST or None, request.FILES or None, instance=instance)
+	if form.is_valid():
+		instance=form.save(commit=False)
+		instance.save()
+		return redirect('student:list')
+	context = {
+		"form": form,
+		"title": "schedule student",
+		"instance": instance,
+	}
+	return render(request, "students/student_schedule.html", context)

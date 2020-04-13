@@ -43,7 +43,7 @@
                   <td>{{st.last_name|title}}</td>
                   <td>{{st.birth_date}}</td>
                   <td>{{st.calculate_age}}</td>
-                  <td><a href="{% url 'schedule:schedule' pk=st.id %}">{{st.schedule|upper}}</a></td>
+                  <td><a href="{% url 'student:schedule' pk=st.id %}">{{st.schedule|upper}}</a></td>
                   <td>{{st.school_status|yesno:'In School,Not in School'}}</td>
                   <td><a href="{% url 'student:update' pk=st.id %}" class="btn btn-outline-success btn-sm"><i class="far fa-edit"></i></a></td>
                 </tr>
@@ -75,7 +75,7 @@
                   <td>{{st.last_name|title}}</td>
                   <td>{{st.birth_date}}</td>
                   <td>{{st.calculate_age}}</td>
-                  <td><a href="{% url 'schedule:schedule' pk=st.id %}">{{st.schedule|upper}}</a></td>
+                  <td><a href="{% url 'student:schedule' pk=st.id %}">{{st.schedule|upper}}</a></td>
                   <td>{{st.school_status|yesno:'In School,Not in School'}}</td>
                   <td><a href="{% url 'student:update' pk=st.id %}" class="btn btn-outline-success btn-sm"><i class="far fa-edit"></i></a></td>
                 </tr>
@@ -107,7 +107,7 @@
                   <td>{{st.last_name|title}}</td>
                   <td>{{st.birth_date}}</td>
                   <td>{{st.calculate_age}}</td>
-                  <td><a href="{% url 'schedule:schedule' pk=st.id %}">{{st.schedule|upper}}</a></td>
+                  <td><a href="{% url 'student:schedule' pk=st.id %}">{{st.schedule|upper}}</a></td>
                   <td>{{st.school_status|yesno:'In School,Not in School'}}</td>
                   <td><a href="{% url 'student:update' pk=st.id %}" class="btn btn-outline-success btn-sm"><i class="far fa-edit"></i></a></td>
                 </tr>
