@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('students.urls')),
     path('schedules/', include('schedules.urls')),
+    path('sections/', include('sections.urls')),
 ]
 if settings.DEBUG:
 	urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

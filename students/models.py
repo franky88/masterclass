@@ -6,8 +6,9 @@ from schedules.models import Schedule
 # Create your models here.
 def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-    return 'user_{0}/{1}'.format(instance.schedule.section.user.id, filename)
+    return 'user_{0}/{1}'.format(instance.schedule.section.adviser.id, filename)
 class StudentName(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     lrn = models.CharField(max_length=12, unique=True, blank=True, null=True)
     first_name = models.CharField(max_length=120)
     last_name = models.CharField(max_length=120)

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{%url 'section:list'%}">Section list</a></li>
+  </ol>
+</nav>
+<h3>{{title|title}} | <small class="text-muted"><a href="{%url 'student:add'%}" type="button" class="btn btn-outline-primary btn-sm myTooltip" data-toggle="tooltip" data-placement="right" title="Add student"><i class="far fa-plus-square"></i></a></small></h3>
+<hr>
+{% endblock %}

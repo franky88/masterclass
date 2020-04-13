@@ -28,10 +28,10 @@
                   <th scope="col">LRN</th>
                   <th scope="col">First</th>
                   <th scope="col">Last</th>
-                  <th scope="col">Birth Date</th>
                   <th scope="col">Age</th>
                   <th scope="col">Schedule</th>
                   <th scope="col">School Status</th>
+                  <th scope="col">Registered by</th>
                   <th scope="col">Update</th>
                 </tr>
               </thead>
@@ -41,11 +41,11 @@
                   <td><a href="{% url 'student:detail' pk=st.id %}" data-toggle="tooltip" data-placement="left" title="Student details" class="myTooltip">{{st.lrn}}</a></td>
                   <td>{{st.first_name|title}}</td>
                   <td>{{st.last_name|title}}</td>
-                  <td>{{st.birth_date}}</td>
                   <td>{{st.calculate_age}}</td>
                   <td><a href="{% url 'student:schedule' pk=st.id %}">{{st.schedule|upper}}</a></td>
                   <td>{{st.school_status|yesno:'In School,Not in School'}}</td>
-                  <td><a href="{% url 'student:update' pk=st.id %}" class="btn btn-outline-success btn-sm"><i class="far fa-edit"></i></a></td>
+                  <td>{{st.user.get_full_name|title}}</td>
+                  <td><a href="{% if not st.schedule.section %}{%url 'student:schedule' pk=st.id%}{%else%}{% url 'student:update' pk=st.id %}{%endif%}" class="btn btn-outline-success btn-sm"><i class="far fa-edit"></i></a></td>
                 </tr>
                 {% endfor %}
               </tbody>
@@ -60,10 +60,10 @@
                   <th scope="col">LRN</th>
                   <th scope="col">First</th>
                   <th scope="col">Last</th>
-                  <th scope="col">Birth Date</th>
                   <th scope="col">Age</th>
                   <th scope="col">Schedule</th>
                   <th scope="col">School Status</th>
+                  <th scope="col">Registered by</th>
                   <th scope="col">Update</th>
                 </tr>
               </thead>
@@ -73,10 +73,10 @@
                   <td><a href="{% url 'student:detail' pk=st.id %}" data-toggle="tooltip" data-placement="left" title="Student details" class="myTooltip">{{st.lrn}}</a></td>
                   <td>{{st.first_name|title}}</td>
                   <td>{{st.last_name|title}}</td>
-                  <td>{{st.birth_date}}</td>
                   <td>{{st.calculate_age}}</td>
                   <td><a href="{% url 'student:schedule' pk=st.id %}">{{st.schedule|upper}}</a></td>
                   <td>{{st.school_status|yesno:'In School,Not in School'}}</td>
+                  <td>{{st.user.get_full_name|title}}</td>
                   <td><a href="{% url 'student:update' pk=st.id %}" class="btn btn-outline-success btn-sm"><i class="far fa-edit"></i></a></td>
                 </tr>
                 {% endfor %}
@@ -92,7 +92,6 @@
                   <th scope="col">LRN</th>
                   <th scope="col">First</th>
                   <th scope="col">Last</th>
-                  <th scope="col">Birth Date</th>
                   <th scope="col">Age</th>
                   <th scope="col">Schedule</th>
                   <th scope="col">School Status</th>
@@ -105,7 +104,6 @@
                   <td><a href="{% url 'student:detail' pk=st.id %}" data-toggle="tooltip" data-placement="left" title="Student details" class="myTooltip">{{st.lrn}}</a></td>
                   <td>{{st.first_name|title}}</td>
                   <td>{{st.last_name|title}}</td>
-                  <td>{{st.birth_date}}</td>
                   <td>{{st.calculate_age}}</td>
                   <td><a href="{% url 'student:schedule' pk=st.id %}">{{st.schedule|upper}}</a></td>
                   <td>{{st.school_status|yesno:'In School,Not in School'}}</td>

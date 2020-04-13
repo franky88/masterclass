@@ -5,13 +5,13 @@ from .forms import StudentAddForm, StudentEditForm, StudentScheduleForm
 # Create your views here.
 def my_list(request):
     student_list = StudentName.objects.all()
-    # student_adviced = StudentName.objects.filter(advice=True)
-    # student_toadviced = StudentName.objects.filter(advice=False)
+    student_adviced = StudentName.objects.filter(advice=True)
+    student_toadviced = StudentName.objects.filter(advice=False)
     context = {
         "title": "my students",
         "studentlist": student_list,
-		# "studentadviced": student_adviced,
-		# "studenttoadviced": student_toadviced,
+		"studentadviced": student_adviced,
+		"studenttoadviced": student_toadviced,
     }
     return render(request, "students/student_list.html", context)
 def student_detail(request, pk):
@@ -69,6 +69,7 @@ def schedule_student(request, pk):
 	form = StudentScheduleForm(request.POST or None, request.FILES or None, instance=instance)
 	if form.is_valid():
 		instance=form.save(commit=False)
+		instance.user = request.user
 		instance.save()
 		return redirect('student:list')
 	context = {
