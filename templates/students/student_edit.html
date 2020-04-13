@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-4 offset-4">
+        <form action="" class="form" method="POST" enctype="multipart/form-data">{% csrf_token %}
+            <h3>Edit Student Form</h3>
+            <hr>
+            {{form|crispy}}
+            <hr>
+            <input type="submit" class="btn btn-primary btn-sm" value="Update">
+            <a href="{% url 'student:list' %}" class="btn btn-danger btn-sm">Cancel</a> 
+        </form>
+    </div>
+</div>
+{% endblock %}
