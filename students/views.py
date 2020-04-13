@@ -6,12 +6,18 @@ from .forms import StudentAddForm, StudentEditForm, StudentScheduleForm
 def my_list(request):
     student_list = StudentName.objects.all()
     student_adviced = StudentName.objects.filter(advice=True)
+    student_adviced_count = StudentName.objects.filter(advice=True).count()
     student_toadviced = StudentName.objects.filter(advice=False)
+    student_toadviced_count = StudentName.objects.filter(advice=False).count()
+    student_count = StudentName.objects.all().count()
     context = {
         "title": "my students",
         "studentlist": student_list,
 		"studentadviced": student_adviced,
 		"studenttoadviced": student_toadviced,
+		"studentcount": student_count,
+		"toadvicecount": student_toadviced_count,
+		"studentadvicedcount": student_adviced_count,
     }
     return render(request, "students/student_list.html", context)
 def student_detail(request, pk):

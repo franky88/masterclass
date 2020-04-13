@@ -6,6 +6,32 @@
     <li class="breadcrumb-item"><a href="{%url 'schedule:list'%}">Schedule list</a></li>
   </ol>
 </nav>
-<h3>{{title|title}} | <small class="text-muted"><a href="{%url 'student:add'%}" type="button" class="btn btn-outline-primary btn-sm myTooltip" data-toggle="tooltip" data-placement="right" title="Add student"><i class="far fa-plus-square"></i></a></small></h3>
+<h3>{{title|title}} | <small class="text-muted"><a href="{%url 'schedule:add'%}" type="button" class="btn btn-outline-primary btn-sm myTooltip" data-toggle="tooltip" data-placement="right" title="Add student"><i class="far fa-plus-square"></i></a></small></h3>
 <hr>
+<div class="row">
+  <div class="col-sm-12">
+    <table class="table table-striped table-sm myTable">
+      <thead>
+        <tr>
+          <th>Section</th>
+          <th>Schedule name</th>
+          <th>Start time</th>
+          <th>End time</th>
+          <th>Total time</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for sch in schedulelist %}
+        <tr>
+          <td>{{ sch.section.section_name|title }}</td>
+          <td>{{sch.schedule_name|upper}}</td>
+          <td>{{sch.start_time}}</td>
+          <td>{{sch.end_time}}</td>
+          <td>{{sch.total_time}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
 {% endblock %}
