@@ -6,7 +6,8 @@
     <li class="breadcrumb-item"><a href="{%url 'student:list'%}">Student list</a></li>
   </ol>
 </nav>
-<h3>{{title|title}} | <small class="text-muted"><a href="{%url 'student:add'%}" type="button" class="btn btn-outline-primary btn-sm myTooltip" data-toggle="tooltip" data-placement="right" title="Add student"><i class="far fa-plus-square"></i></a></small></h3>
+<h2>{{grey}}</h2>
+<h3>{% if request.user.is_superuser %}Student List | <small class="text-muted"><a href="{%url 'student:add'%}" type="button" class="btn btn-outline-primary btn-sm myTooltip" data-toggle="tooltip" data-placement="right" title="Add student"><i class="far fa-plus-square"></i></a></small>{% else %} {{title|title}} {% endif %}</h3>
 <hr>
 {% if request.user.is_authenticated %}
   {% if request.user.is_superuser %}
@@ -23,7 +24,6 @@
                   <th scope="col">Last</th>
                   <th scope="col">Age</th>
                   <th scope="col">Schedule</th>
-                  <th scope="col">School Status</th>
                   <th scope="col">Registered by</th>
                   <th scope="col">Update</th>
                 </tr>
@@ -36,7 +36,6 @@
                   <td>{{st.last_name|title}}</td>
                   <td>{{st.calculate_age}}</td>
                   <td><a href="{% url 'student:schedule' pk=st.id %}">{{st.schedule|upper}}</a></td>
-                  <td>{{st.school_status|yesno:'In School,Not in School'}}</td>
                   <td>{{st.user.get_full_name|title}}</td>
                   <td><a href="{% if not st.schedule.section %}{%url 'student:schedule' pk=st.id%}{%else%}{% url 'student:update' pk=st.id %}{%endif%}" class="btn btn-outline-success btn-sm"><i class="far fa-edit"></i></a></td>
                 </tr>
@@ -110,6 +109,8 @@
       </div>
     </div>
     <div class="col-sm-2">
+      <h4>Filters</h4>
+      <hr>
       <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">All <span class="badge badge-pill badge-light float-right m-1">{{studentcount}}</span></a>
         <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Adviced <span class="badge badge-pill badge-success float-right m-1">{{studentadvicedcount}}</span></a>
@@ -118,10 +119,9 @@
     </div>
   </div>
   {% else %}
-  <hr>
   <div class="row">
     <div class="col-sm-12">
-      <table id="myTable1" class="table table-hover table-sm">
+      <table class="table table-hover table-sm myTable">
         <thead>
           <tr>
             <th scope="col">LRN</th>

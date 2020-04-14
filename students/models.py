@@ -28,7 +28,7 @@ class StudentName(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     class Meta:
-        ordering = ['-timestamp']
+        ordering = ['-timestamp',]
     def calculate_age(self):
         today = date.today()
         born = self.birth_date
