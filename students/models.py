@@ -7,6 +7,14 @@ from schedules.models import Schedule
 def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
     return 'user_{0}/{1}'.format(instance.schedule.section.adviser.id, filename)
+class SchoolStatus(models.Model):
+    status = models.CharField(max_length=120, blank=True, null=True)
+    timestamp = models.DateField(auto_now_add=True)
+    updated = models.DateField(auto_now=True)
+    class Meta:
+        verbose_name_plural = "school statuses"
+    def __str__(self):
+        return self.status
 class StudentName(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     lrn = models.CharField(max_length=12, unique=True, blank=True, null=True)
@@ -20,7 +28,7 @@ class StudentName(models.Model):
     ]
     gender = models.CharField(max_length=6, choices=GENDER, blank=True, null=True)
     birth_date = models.DateField()
-    school_status = models.BooleanField(default=True, verbose_name='schooling status')
+    school_status = models.ForeignKey(SchoolStatus, on_delete=models.CASCADE, verbose_name='schooling status', blank=True, null=True)
     schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE, blank=True, null=True)
     advice = models.BooleanField(default=False)
     remarks = models.TextField(blank=True, null=True)

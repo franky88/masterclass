@@ -54,7 +54,6 @@
                   <th scope="col">Last</th>
                   <th scope="col">Age</th>
                   <th scope="col">Schedule</th>
-                  <th scope="col">School Status</th>
                   <th scope="col">Registered by</th>
                   <th scope="col">Update</th>
                 </tr>
@@ -67,7 +66,6 @@
                   <td>{{st.last_name|title}}</td>
                   <td>{{st.calculate_age}}</td>
                   <td><a href="{% url 'student:schedule' pk=st.id %}">{{st.schedule|upper}}</a></td>
-                  <td>{{st.school_status|yesno:'In School,Not in School'}}</td>
                   <td>{{st.user.get_full_name|title}}</td>
                   <td><a href="{% url 'student:update' pk=st.id %}" class="btn btn-outline-success btn-sm"><i class="far fa-edit"></i></a></td>
                 </tr>
@@ -86,7 +84,6 @@
                   <th scope="col">Last</th>
                   <th scope="col">Age</th>
                   <th scope="col">Schedule</th>
-                  <th scope="col">School Status</th>
                   <th scope="col">Update</th>
                 </tr>
               </thead>
@@ -98,7 +95,6 @@
                   <td>{{st.last_name|title}}</td>
                   <td>{{st.calculate_age}}</td>
                   <td><a href="{% url 'student:schedule' pk=st.id %}">{{st.schedule|upper}}</a></td>
-                  <td>{{st.school_status|yesno:'In School,Not in School'}}</td>
                   <td><a href="{% url 'student:update' pk=st.id %}" class="btn btn-outline-success btn-sm"><i class="far fa-edit"></i></a></td>
                 </tr>
                 {% endfor %}
@@ -130,7 +126,6 @@
             <th scope="col">Birth Date</th>
             <th scope="col">Age</th>
             <th scope="col">Schedule</th>
-            <th scope="col">School Status</th>
             <th scope="col">Update</th>
           </tr>
         </thead>
@@ -145,7 +140,6 @@
                 <td>{{st.birth_date}}</td>
                 <td>{{st.calculate_age}}</td>
                 <td>{{st.schedule|upper}}</td>
-                <td>{{st.school_status|yesno:'In School,Not in School'}}</td>
                 <td><a href="{% url 'student:update' pk=st.id %}" class="btn btn-outline-success btn-sm"><i class="far fa-edit"></i></a></td>
               </tr>
               {% endfor %}
