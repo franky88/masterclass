@@ -87,6 +87,7 @@ def schedule_student(request, pk):
 	if form.is_valid():
 		instance=form.save(commit=False)
 		instance.user = request.user
+		instance.schedule.section.student_counter = +1
 		instance.save()
 		return redirect('student:list')
 	context = {

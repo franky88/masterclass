@@ -6,7 +6,7 @@
     <li class="breadcrumb-item"><a href="{%url 'section:list'%}">Section list</a></li>
   </ol>
 </nav>
-<h3>{{title|title}} | <small class="text-muted"><a href="{%url 'student:add'%}" type="button" class="btn btn-outline-primary btn-sm myTooltip" data-toggle="tooltip" data-placement="right" title="Add student"><i class="far fa-plus-square"></i></a></small></h3>
+<h3>{{title|title}} | <small class="text-muted"><a href="{%url 'section:add'%}" type="button" class="btn btn-outline-primary btn-sm myTooltip" data-toggle="tooltip" data-placement="right" title="Add student"><i class="far fa-plus-square"></i></a></small></h3>
 <hr>
 <div class="card-columns">
     {% for sec in sectionlist %}
@@ -14,7 +14,10 @@
       <img src="..." class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">{{sec.section_name|upper}} | <small>{{ sec.adviser.get_full_name|title }} Class Adviser</small></h5>
-        <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+        <p class="card-text">
+          Class Roster: <strong>{{ sec.student_counter }}</strong> <br>
+          Room Capasity: <strong>{{sec.max_number}}</strong>
+        </p>
       </div>
     </div>
     {% endfor %}

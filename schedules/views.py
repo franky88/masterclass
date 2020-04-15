@@ -15,7 +15,6 @@ def add_schedule(request):
     if request.method == "POST":
         if form.is_valid():
             instance=form.save(commit=False)
-            # schedule = Schedule.objects.get(schedule_name=)
             instance.save()
             return redirect('schedule:list')
     context = {

@@ -21,9 +21,7 @@ class StudentEditForm(forms.ModelForm):
             "last_name",
             "extension_name",
             "birth_date",
-            "schedule",
             "image",
-            "school_status",
         )
 class StudentScheduleForm(forms.ModelForm):
     class Meta:
@@ -31,5 +29,4 @@ class StudentScheduleForm(forms.ModelForm):
         fields = (
             "schedule",
             "advice",
-            "remarks",
         )
