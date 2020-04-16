@@ -7,6 +7,4 @@ class SectionAddForms(forms.ModelForm):
             "adviser",
             "section_name",
             "grade_level",
-            "max_number",
-            "student_counter",
         ]

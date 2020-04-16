@@ -7,7 +7,7 @@ from .forms import StudentAddForm, StudentEditForm, StudentScheduleForm
 # Create your views here.
 @login_required()
 def my_list(request):
-	# student_grey = StudentName.objects.filter(schedule__section__section_name="grey").count()
+	student_grey = StudentName.objects.filter(schedule__section__section_name="Green").count()
 	student_list = StudentName.objects.all()
 	student_adviced = StudentName.objects.filter(advice=True)
 	student_adviced_count = StudentName.objects.filter(advice=True).count()
@@ -22,7 +22,7 @@ def my_list(request):
 		"studentcount": student_count,
 		"toadvicecount": student_toadviced_count,
 		"studentadvicedcount": student_adviced_count,
-		# 'grey': student_grey,
+		'grey': student_grey,
 	}
 	return render(request, "students/student_list.html", context)
 @login_required()
@@ -87,7 +87,7 @@ def schedule_student(request, pk):
 	if form.is_valid():
 		instance=form.save(commit=False)
 		instance.user = request.user
-		instance.schedule.section.student_counter = +1
+		instance.schedule.student_counter += 1
 		instance.save()
 		return redirect('student:list')
 	context = {

@@ -10,6 +10,13 @@ def schedule_list(request):
         "schedulelist": schedule_list,
     }
     return render(request, "schedules/schedule_list.html", context)
+def schedule_detail(request, pk):
+    instance = get_object_or_404(Schedule, pk=pk)
+    context = {
+        "title": "schedule detail",
+        "instance": instance,
+    }
+    return render(request, "schedules/schedule_detail.html", context)
 def add_schedule(request):
     form = ScheduleForm(request.POST or None, request.FILES or None)
     if request.method == "POST":

@@ -24,7 +24,7 @@
         {% for sch in schedulelist %}
         <tr>
           <td>{{ sch.section.section_name|title }}</td>
-          <td>{{sch.schedule_name|upper}}</td>
+          <td><a href="{%url 'schedule:detail' pk=sch.id%}">{{sch.schedule_name|upper}}</a></td>
           <td>{{sch.start_time}}</td>
           <td>{{sch.end_time}}</td>
           <td>{{sch.total_time}}</td>
