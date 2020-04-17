@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from datetime import date
 from sections.models import Section
+from django.db.models import Count
 # Create your models here.
 class Schedule(models.Model):
     section = models.ForeignKey(Section, on_delete=models.CASCADE, blank=True, null=True)
@@ -11,6 +12,8 @@ class Schedule(models.Model):
     student_counter = models.IntegerField(default=0)
     start_time = models.TimeField()
     end_time = models.TimeField()
+    def student_schedule_count(self):
+        return self.student_schedule.count()
     def total_time(self):
         # rendertime = self.end_time.second - self.start_time.second
         today = date.today()
@@ -20,4 +23,4 @@ class Schedule(models.Model):
         return tt
     def __str__(self):
         sched = "%s - %s"%(str(self.start_time),str(self.end_time))
-        return "%s %s (%s)"%(self.section,self.schedule_name, sched)
+        return "%s %s (%s) %d/%d"%(self.section,self.schedule_name, sched, self.student_schedule_count(), self.max_number)

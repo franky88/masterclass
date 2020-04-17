@@ -29,10 +29,10 @@ class StudentName(models.Model):
     gender = models.CharField(max_length=6, choices=GENDER, blank=True, null=True)
     birth_date = models.DateField()
     school_status = models.ForeignKey(SchoolStatus, on_delete=models.CASCADE, verbose_name='schooling status', blank=True, null=True)
-    schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE, blank=True, null=True)
+    image = models.ImageField(upload_to=user_directory_path, blank=True, null=True)
+    schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE, blank=True, null=True, related_name='student_schedule')
     advice = models.BooleanField(default=False)
     remarks = models.TextField(blank=True, null=True)
-    image = models.ImageField(upload_to=user_directory_path, blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     class Meta:

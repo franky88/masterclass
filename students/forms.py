@@ -26,7 +26,8 @@ class StudentEditForm(forms.ModelForm):
 class StudentScheduleForm(forms.ModelForm):
     class Meta:
         model = StudentName
-        fields = (
+        fields = [
             "schedule",
             "advice",
-        )
+            "remarks",
+        ]

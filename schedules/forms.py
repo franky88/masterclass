@@ -9,3 +9,11 @@ class ScheduleForm(forms.ModelForm):
             "start_time",
             "end_time"
         ]
+# class ScheduleAdviceForm(forms.ModelForm):
+#     class Meta:
+#         model = ScheduleAdvice
+#         fields = [
+#             "schedule",
+#             "advice",
+#             "remarks",
+#         ]

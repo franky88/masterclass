@@ -29,3 +29,19 @@ def add_schedule(request):
         "form": form,
     }
     return render(request, "schedules/add_schedule.html", context)
+# def advice_student(request, pk):
+#     student = get_object_or_404(StudentName, pk=pk)
+#     form = ScheduleAdviceForm(request.POST or None, request.FILES or None, instance=student)
+#     if request.method == "POST":
+#         if form.is_valid():
+#             instance = form.save(commit=False)
+#             instance.user = request.user
+#             instance.student = student
+#             instance.save()
+#             return redirect('student:list')
+#     context = {
+#         "form": form,
+#         "title": "advice student",
+#         "instance": student,
+#     }
+#     return render(request, "schedules/advice_student.html", context)
