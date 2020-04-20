@@ -11,8 +11,8 @@
 <hr>
 <div class="row">
     <div class="col-sm-12">
-        {% for student in instance.studentname_set.all %}
-        {{ student.full_name|title }}
+        {% for student in instance.studentadviceschedule_set.all %}
+            {{ student.student.full_name|title }} <br>
         {% endfor %}
     </div>
 </div>

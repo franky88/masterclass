@@ -12,8 +12,9 @@
         <h3>{{title|title}}</h3>
         <hr>
         <form action="" class="form" method="POST" enctype="multipart/form-data">{% csrf_token %}
+            {{ formset.management_form|crispy }}
             <h4>{{instance.full_name|title}}</h4>
-            {{form|crispy}}
+            {{formset|crispy}}
             <hr>
             <input type="submit" class="btn btn-primary btn-sm" value="Update">
             <a href="{% url 'student:list' %}" class="btn btn-danger btn-sm">Cancel</a> 

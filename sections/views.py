@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Section
 from .forms import SectionAddForms
 # Create your views here.
@@ -23,3 +23,10 @@ def add_section(request):
         # "count": student_count,
     }
     return render(request, "sections/add_section.html", context)
+def section_details(request, pk):
+    instance = get_object_or_404(Section, pk=pk)
+    context = {
+        "title": "section details",
+        "instance": instance,
+    }
+    return render(request, "sections/section_detail.html", context)

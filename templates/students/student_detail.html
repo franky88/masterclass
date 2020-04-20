@@ -25,7 +25,7 @@
                     {% if instance.gender == "M" %}His {% else %}Her {% endif %} age is {{ instance.calculate_age }} years old. 
                     {% if instance.gender == "M" %}His {% else %}Her {% endif %} birthday is on {{instance.birth_date}}
                 </p>
-                <a href="{% if not instance.schedule.section %}{%url 'student:schedule' pk=instance.id%}{%else%}{%url 'student:edit' pk=instance.id%}{%endif%}" class="btn btn-outline-success btn-sm">
+                <a href="{%url 'student:edit' pk=instance.id%}" class="btn btn-outline-success btn-sm">
                     Edit
                 </a>
                 <a href="{%url 'student:delete' pk=instance.id%}" class="btn btn-outline-danger btn-sm">
