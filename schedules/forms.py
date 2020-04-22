@@ -1,11 +1,11 @@
 from django import forms
-from .models import Schedule
+from .models import SubjectSchedule
 class ScheduleForm(forms.ModelForm):
     class Meta:
-        model = Schedule
+        model = SubjectSchedule
         fields = [
             "section",
-            "schedule_name",
+            "subject_name",
             "start_time",
             "end_time"
         ]

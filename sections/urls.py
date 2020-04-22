@@ -4,4 +4,5 @@ app_name = "section"
 urlpatterns = [
     path('', views.section_list, name='list'),
     path('add/', views.add_section, name='add'),
+    path('detail/<pk>', views.section_details, name='detail'),
 ]

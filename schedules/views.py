@@ -1,18 +1,18 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.forms import inlineformset_factory
 from students.models import StudentName
-from .models import Schedule, StudentAdviceSchedule
+from .models import SubjectSchedule, StudentAdviceSchedule
 from .forms import ScheduleForm
 # Create your views here.
 def schedule_list(request):
-    schedule_list = Schedule.objects.all()
+    schedule_list = SubjectSchedule.objects.all()
     context = {
         "title": "schedule list",
         "schedulelist": schedule_list,
     }
     return render(request, "schedules/schedule_list.html", context)
 def schedule_detail(request, pk):
-    instance = get_object_or_404(Schedule, pk=pk)
+    instance = get_object_or_404(SubjectSchedule, pk=pk)
     context = {
         "title": "schedule detail",
         "instance": instance,

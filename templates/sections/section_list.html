@@ -10,16 +10,15 @@
 <hr>
 <div class="card-columns">
     {% for sec in sectionlist %}
-    <div class="card">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">{{sec.section_name|upper}} | <small>{{ sec.adviser.get_full_name|title }} Class Adviser</small></h5>
-        <p class="card-text">
-          Class Roster: <strong>{{ sec.student_counter }}</strong> <br>
-          Room Capasity: <strong>{{sec.max_number}}</strong>
-        </p>
+    <a href="{%url 'section:detail' pk=sec.id%}">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{sec.section_name|upper}} | <small>{{ sec.adviser.get_full_name|title }} Class Adviser</small></h5>
+          <p class="card-text">
+          </p>
+        </div>
       </div>
-    </div>
+    </a>
     {% endfor %}
   </div>
 {% endblock %}

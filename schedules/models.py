@@ -6,11 +6,16 @@ from sections.models import Section
 from students.models import StudentName
 from django.db.models import Count
 # Create your models here.
-class Schedule(models.Model):
+class WeeklySchedule(models.Model):
+    schedule = models.CharField(max_length=120, blank=True, null=True)
+    def __str__(self):
+        return self.schedule
+class SubjectSchedule(models.Model):
+    teacher = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     section = models.ForeignKey(Section, on_delete=models.CASCADE, blank=True, null=True)
-    schedule_name = models.CharField(max_length=120, blank=True)
-    max_number = models.IntegerField(verbose_name="maximum number of students", default=0)
-    student_counter = models.IntegerField(default=0)
+    subject_name = models.CharField(max_length=120, blank=True, null=True)
+    schedule = models.ForeignKey(WeeklySchedule, on_delete=models.CASCADE, blank=True, null=True)
+    total_units = models.IntegerField(blank=True, null=True)
     start_time = models.TimeField()
     end_time = models.TimeField()
     # def student_schedule_count(self):
@@ -27,11 +32,12 @@ class Schedule(models.Model):
         return tt
     def __str__(self):
         sched = "%s - %s"%(str(self.start_time),str(self.end_time))
-        return "%s %s (%s)"%(self.section,self.schedule_name, sched)
+        s = "%s - %s (%s)"%(self.section,self.subject_name, sched)
+        return s.upper()
 class StudentAdviceSchedule(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     student = models.ForeignKey(StudentName, on_delete=models.CASCADE, blank=True, null=True)
-    schedule = models.ForeignKey(Schedule, on_delete=models.CASCADE, blank=True, null=True)
+    schedule = models.ForeignKey(SubjectSchedule, on_delete=models.CASCADE, blank=True, null=True)
     advice = models.BooleanField(default=False)
     remarks = models.TextField(blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)

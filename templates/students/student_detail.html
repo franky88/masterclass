@@ -35,4 +35,20 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="media position-relative">
+            {% if instance.image %}
+            <img src="{{ instance.image.url }}" class="align-self-start mr-3 rounded" alt="{% static 'instance.image.url' %}" style="width: 128px; height: 128px; object-fit: cover;">
+            {%else%}
+            <img src="" class="align-self-start mr-3 rounded" alt="" style="width: 128px; height: 128px;">
+            {% endif %}
+            <div class="media-body">
+              <h5 class="mt-0">{{instance.full_name|upper}} | <small>LRN: {{instance.lrn}}</small></h5>
+              <p></p>
+              <a href="#" class="stretched-link">Go somewhere</a>
+            </div>
+          </div>
+    </div>
+</div>
 {% endblock %}
