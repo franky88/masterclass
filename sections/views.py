@@ -33,7 +33,7 @@ def section_details(request, pk):
         if formset.is_valid():
             formset.save()
             return redirect('section:detail', pk=instance.id)
-    formset = subjectScheduleFromset(instance=instance)
+    formset = subjectScheduleFromset()
     context = {
         "title": "section details",
         "instance": instance,

@@ -29,31 +29,20 @@
                 </tr>
             </thead>
             <tbody>
-                {% for ss in instance.subjectschedule_set.all %}
-                <tr>
-                    <td>{{ ss.subject_name|title }}</td>
-                    <td>{{ ss.teacher|title }}</td>
-                    <td>room</td>
-                    <td>{{ ss.start_time }}</td>
-                    <td>{{ ss.end_time }}</td>
-                    <td>{{ ss.total_time }}</td>
-                </tr>
-                {% endfor %}
+                <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                    {{ formset.management_form|crispy }}
+                    {% for form in formset %}
+                    <tr>
+                        <td>{{ form|crispy }}</td>
+                    </tr>
+                    {% endfor %}
+                    
+                    <tr>
+                        <td colspan="6"><input type="submit" class="btn btn-primary btn-sm" value="Add"></td>
+                    </tr>
+                </form>
             </tbody>
         </table>
-    </div>
-</div>
-<div class="row">
-    <div class="col-sm-4 offset-4">
-        <hr>
-        <form action="" class="form" method="POST" enctype="multipart/form-data">{% csrf_token %}
-            {{ formset.management_form|crispy }}
-            {% for form in formset %}
-              {{ form.teacher|as_crispy_field }}
-            {% endfor %}
-            <hr>
-            <input type="submit" class="btn btn-primary btn-sm" value="ADD">
-        </form>
     </div>
 </div>
 

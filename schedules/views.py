@@ -32,7 +32,7 @@ def add_schedule(request):
     return render(request, "schedules/add_schedule.html", context)
 def advice_student(request, pk):
     student = get_object_or_404(StudentName, pk=pk)
-    studentScheduleFormset = inlineformset_factory(StudentName, StudentAdviceSchedule, fields=('schedule', 'advice', 'remarks'), max_num=1, can_delete=False)
+    studentScheduleFormset = inlineformset_factory(StudentName, StudentAdviceSchedule, fields=('schedule', 'advice', 'remarks'), can_delete=True)
     if request.method == "POST":
         formset = studentScheduleFormset(request.POST or None, request.FILES or None, instance=student)
         if formset.is_valid():
